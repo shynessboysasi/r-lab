@@ -47,15 +47,25 @@ cat("P-value =", p_value)
 
 
 
-x <- c(20,13,15,16)
+# Paired T-Test Program
 
-mu0 <- 15
-n <- length(x)
+# First sample (Before)
+x <- c(10, 12, 15, 18)
 
-xbar <- mean(x)
-s <- sd(x)
+# Second sample (After)
+y <- c(8, 11, 14, 17)
 
-t_value <- (xbar - mu0) / (s / sqrt(n))
+# Perform paired t-test
+result <- t.test(x, y, paired = TRUE)
 
-cat("Sample Mean =", xbar, "\n")
-cat("t value =", t_value)
+cat("----- Paired T-Test Result -----\n")
+print(result)
+
+# Conclusion
+if(result$p.value < 0.05){
+  cat("\nConclusion: Reject Null Hypothesis\n")
+  cat("There is a significant difference between the two paired samples.\n")
+} else {
+  cat("\nConclusion: Accept Null Hypothesis\n")
+  cat("There is no significant difference between the two paired samples.\n")
+}
